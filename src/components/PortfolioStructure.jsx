@@ -1,3 +1,10 @@
+// Professional SVG Chart Icon
+const ChartBarIcon = () => (
+  <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13l4-4 4 4 5-5M3 21V8a2 2 0 012-2h14a2 2 0 012 2v13" />
+  </svg>
+)
+
 function PortfolioStructure() {
   return (
     <section className="py-20 bg-white">
@@ -11,7 +18,9 @@ function PortfolioStructure() {
           {/* Chart placeholder */}
           <div className="bg-gradient-to-br from-indigo-50 to-saffron-50 rounded-2xl p-12 h-96 flex items-center justify-center">
             <div className="text-center">
-              <div className="text-6xl mb-4">📊</div>
+              <div className="flex justify-center mb-4 text-indigo-600">
+                <ChartBarIcon />
+              </div>
               <p className="text-gray-600">[Portfolio Allocation Chart]</p>
               <p className="text-sm text-gray-500 mt-2">Sector breakdown visualization</p>
             </div>

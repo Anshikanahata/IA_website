@@ -4,43 +4,17 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [logoError, setLogoError] = useState(false)
 
-  // Modern India images for header background gallery
-  // Add your image filenames here (place them in the /public folder)
-  const modernIndiaImages = [
-    '/india-1.jpg',
-    '/india-2.jpg',
-    '/india-3.jpg',
-    '/india-4.jpg',
-    '/india-5.jpg',
-  ]
-
   // Try different logo formats - use whichever exists
   // Priority: SVG > PNG > JPG
-  const logoPath = '/logo.svg' // Change to /logo.png or /logo.jpg if using those formats
+  const logoPath = '/logo.png' // Updated to use logo.png
 
   return (
-    <header className="relative bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm overflow-hidden">
-      {/* Modern India Images Background Gallery */}
-      <div className="absolute inset-0 opacity-15">
-        <div className="flex h-full">
-          {modernIndiaImages.map((img, index) => (
-            <div
-              key={index}
-              className="flex-1 bg-cover bg-center border-r border-white/20 last:border-r-0"
-              style={{
-                backgroundImage: `url(${img})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
-          ))}
-        </div>
-      </div>
+    <header className="relative bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
 
       <nav className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <div className="flex items-center">
+          {/* Logo - Top Left Corner */}
+          <div className="flex items-center z-10">
             <a href="/" className="flex items-center">
               {!logoError ? (
                 <img

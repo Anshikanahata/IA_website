@@ -1,3 +1,28 @@
+// Professional SVG Icons
+const DocumentIcon = () => (
+  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+  </svg>
+)
+
+const ReportIcon = () => (
+  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13l4-4 4 4 5-5M3 21V8a2 2 0 012-2h14a2 2 0 012 2v13" />
+  </svg>
+)
+
+const VideoIcon = () => (
+  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+  </svg>
+)
+
+const PodcastIcon = () => (
+  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+  </svg>
+)
+
 function KnowledgeHub() {
   const content = [
     {
@@ -53,11 +78,11 @@ function KnowledgeHub() {
               className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
             >
               <div className="h-48 bg-gradient-to-br from-indigo-100 to-saffron-100 flex items-center justify-center">
-                <span className="text-5xl">
-                  {item.type === 'Article' ? '📄' : 
-                   item.type === 'Report' ? '📊' : 
-                   item.type === 'Video' ? '🎥' : '🎙️'}
-                </span>
+                <div className="text-indigo-600">
+                  {item.type === 'Article' ? <DocumentIcon /> : 
+                   item.type === 'Report' ? <ReportIcon /> : 
+                   item.type === 'Video' ? <VideoIcon /> : <PodcastIcon />}
+                </div>
               </div>
               <div className="p-6">
                 <div className="text-xs font-medium text-saffron-600 mb-2">{item.type.toUpperCase()}</div>
