@@ -1,0 +1,85 @@
+function KnowledgeHub() {
+  const content = [
+    {
+      type: "Article",
+      title: "Understanding India's Digital Economy",
+      date: "November 2024",
+      description: "An in-depth look at India's digital transformation and investment opportunities",
+    },
+    {
+      type: "Report",
+      title: "Q4 2024 Market Outlook",
+      date: "October 2024",
+      description: "Our latest analysis of Indian market trends and positioning",
+    },
+    {
+      type: "Video",
+      title: "Grassroots Tour: Bangalore Tech Hub",
+      date: "September 2024",
+      description: "Behind-the-scenes from our research tour of India's Silicon Valley",
+    },
+    {
+      type: "Podcast",
+      title: "The India Opportunity",
+      date: "September 2024",
+      description: "Discussing long-term structural themes with industry experts",
+    },
+    {
+      type: "Article",
+      title: "Infrastructure Investment Update",
+      date: "August 2024",
+      description: "Analyzing India's massive infrastructure build-out",
+    },
+    {
+      type: "Report",
+      title: "Healthcare Sector Deep Dive",
+      date: "July 2024",
+      description: "Exploring opportunities in India's growing healthcare industry",
+    },
+  ]
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-light text-center mb-4 text-gray-900">Knowledge Hub</h2>
+        <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+          Expert insights, research, and commentary on Indian markets
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {content.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+            >
+              <div className="h-48 bg-gradient-to-br from-indigo-100 to-saffron-100 flex items-center justify-center">
+                <span className="text-5xl">
+                  {item.type === 'Article' ? '📄' : 
+                   item.type === 'Report' ? '📊' : 
+                   item.type === 'Video' ? '🎥' : '🎙️'}
+                </span>
+              </div>
+              <div className="p-6">
+                <div className="text-xs font-medium text-saffron-600 mb-2">{item.type.toUpperCase()}</div>
+                <h3 className="text-xl font-medium mb-2 text-gray-900 group-hover:text-indigo-600 transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-gray-500 mb-3">{item.date}</p>
+                <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <button className="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white px-8 py-3 rounded-lg font-medium transition-colors">
+            View All Content
+          </button>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default KnowledgeHub
+
