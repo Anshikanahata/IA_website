@@ -1,127 +1,169 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
-// Professional SVG Icons
+// Icons for Pillars
 const ChartIcon = () => (
-  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M3 13l4-4 4 4 5-5M3 21V8a2 2 0 012-2h14a2 2 0 012 2v13" />
+  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
   </svg>
 )
 
 const TargetIcon = () => (
-  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-    <circle cx="12" cy="12" r="10" />
-    <circle cx="12" cy="12" r="6" />
-    <circle cx="12" cy="12" r="2" />
+  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
   </svg>
 )
 
-const LightbulbIcon = () => (
-  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m4.5 0a12.06 12.06 0 00-4.5 0m0 0a6.01 6.01 0 01-1.5-.189M9.75 12.75a6.01 6.01 0 001.5-.189M9.75 12.75a6.01 6.01 0 01-1.5-.189m1.5.189V18m0 0a12.06 12.06 0 004.5 0m-4.5 0a12.06 12.06 0 01-4.5 0" />
+const NetworkIcon = () => (
+  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
   </svg>
 )
 
-const RocketIcon = () => (
-  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A15 15 0 004.59 14.37m0 0a6 6 0 00-1.84 2.58m1.84-2.58a6 6 0 011.84 2.58m0 0v4.8m0-4.8a6 6 0 011.84-2.58" />
+const CubeIcon = () => (
+  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
   </svg>
 )
 
-const StarIcon = () => (
-  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+const ThumbUpIcon = () => (
+  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
   </svg>
 )
 
 function FivePillarCarousel() {
-  const [currentPillar, setCurrentPillar] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
 
   const pillars = [
     {
-      title: "Pillar 1",
-      description: "Description of first pillar - add your content here",
+      title: "India's Growth Story",
+      description: "India's Growth Story, driven by its demographics, provides a compelling opportunity for our investors",
+      color: "from-saffron-500 to-saffron-600",
+      backColor: "from-saffron-50 to-saffron-100",
+      textColor: "text-saffron-900",
       icon: <ChartIcon />
     },
     {
-      title: "Pillar 2",
-      description: "Description of second pillar - add your content here",
+      title: "Competitive Edge",
+      description: "India Avenue's focus and expertise on India, provides our investors with a competitive edge",
+      color: "from-indigo-600 to-indigo-700",
+      backColor: "from-indigo-50 to-indigo-100",
+      textColor: "text-indigo-900",
       icon: <TargetIcon />
     },
     {
-      title: "Pillar 3",
-      description: "Description of third pillar - add your content here",
-      icon: <LightbulbIcon />
+      title: "Local Network",
+      description: "Our robust local network in India, gives us greater access to knowledge and insights to build smart portfolios",
+      color: "from-saffron-500 to-saffron-600",
+      backColor: "from-saffron-50 to-saffron-100",
+      textColor: "text-saffron-900",
+      icon: <NetworkIcon />
     },
     {
-      title: "Pillar 4",
-      description: "Description of fourth pillar - add your content here",
-      icon: <RocketIcon />
+      title: "Smart Portfolio Construction",
+      description: "This is embedded in our portfolio construction, which is leveraged to the growth story. Our investors invest like locals, rather than foreigners",
+      color: "from-indigo-600 to-indigo-700",
+      backColor: "from-indigo-50 to-indigo-100",
+      textColor: "text-indigo-900",
+      icon: <CubeIcon />
     },
     {
-      title: "Pillar 5",
-      description: "Description of fifth pillar - add your content here",
-      icon: <StarIcon />
+      title: "Easy Accessibility",
+      description: "The ease and accessibility of our funds makes it simple for investors",
+      color: "from-saffron-500 to-saffron-600",
+      backColor: "from-saffron-50 to-saffron-100",
+      textColor: "text-saffron-900",
+      icon: <ThumbUpIcon />
     }
   ]
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-light text-center mb-4 text-gray-900">Our Five Pillars</h2>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-          The foundation of our investment approach
-        </p>
+    <section ref={sectionRef} id="why-india-avenue" className="py-20 bg-gray-50">
+      {/* Subtle Texture Background */}
+      <div className="absolute inset-0 opacity-30" style={{
+        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)`,
+        backgroundSize: '20px 20px'
+      }}></div>
 
-        {/* Carousel */}
-        <div className="relative">
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentPillar * 100}%)` }}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className={`transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <h2 className="text-3xl md:text-4xl font-light text-center mb-3 text-gray-900 tracking-tight">Our 5 Pillars</h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+            The foundation of our investment approach and what sets us apart
+          </p>
+        </div>
+
+        {/* Responsive Grid with Flip Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 h-80">
+          {pillars.map((pillar, index) => (
+            <div
+              key={index}
+              className={`group perspective-1000 h-full ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
-              {pillars.map((pillar, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-4">
-                  <div className="bg-gradient-to-br from-indigo-50 to-saffron-50 rounded-2xl p-12 text-center max-w-3xl mx-auto">
-                    <div className="flex justify-center mb-6 text-indigo-600">{pillar.icon}</div>
-                    <h3 className="text-3xl font-light mb-4 text-gray-900">{pillar.title}</h3>
-                    <p className="text-lg text-gray-600">{pillar.description}</p>
+              {/* Flip Card Inner Container */}
+              <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
+                
+                {/* Front Side */}
+                <div className="absolute w-full h-full bg-white rounded-xl shadow-md backface-hidden border border-gray-100 p-6 flex flex-col items-center justify-center text-center">
+                  {/* Colored Accent Top Bar */}
+                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${pillar.color} rounded-t-xl`}></div>
+                  
+                  {/* Icon Badge */}
+                  <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${pillar.color} flex items-center justify-center shadow-lg mb-6 transform group-hover:scale-110 transition-transform duration-300`}>
+                    {pillar.icon}
                   </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl font-semibold text-gray-900">
+                    {pillar.title}
+                  </h3>
                 </div>
-              ))}
+
+                {/* Back Side */}
+                <div className={`absolute w-full h-full bg-gradient-to-br ${pillar.backColor} rounded-xl shadow-xl backface-hidden rotate-y-180 p-6 flex flex-col items-center justify-center text-center border border-gray-100`}>
+                  {/* Colored Accent Top Bar */}
+                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${pillar.color} rounded-t-xl`}></div>
+                  
+                  {/* Description */}
+                  <p className={`${pillar.textColor} text-sm leading-relaxed font-medium`}>
+                    {pillar.description}
+                  </p>
+                  
+                  {/* Bottom Decoration */}
+                  <div className={`mt-4 w-12 h-1 rounded-full bg-gradient-to-r ${pillar.color}`}></div>
+                </div>
+              </div>
             </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex justify-center mt-8 gap-2">
-            {pillars.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPillar(index)}
-                className={`h-3 rounded-full transition-all ${
-                  currentPillar === index 
-                    ? 'w-12 bg-saffron-500' 
-                    : 'w-3 bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to pillar ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          {/* Arrow buttons */}
-          <button
-            onClick={() => setCurrentPillar((currentPillar - 1 + pillars.length) % pillars.length)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors"
-            aria-label="Previous pillar"
-          >
-            ←
-          </button>
-          <button
-            onClick={() => setCurrentPillar((currentPillar + 1) % pillars.length)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition-colors"
-            aria-label="Next pillar"
-          >
-            →
-          </button>
+          ))}
         </div>
       </div>
     </section>

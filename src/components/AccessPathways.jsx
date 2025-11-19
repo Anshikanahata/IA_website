@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react'
+
 // Professional SVG Icons
 const BankIcon = () => (
   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -30,6 +32,32 @@ const RocketLaunchIcon = () => (
 )
 
 function AccessPathways() {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
+
   const platforms = [
     { name: "Platform 1", logo: <BankIcon /> },
     { name: "Platform 2", logo: <BriefcaseIcon /> },
@@ -39,41 +67,57 @@ function AccessPathways() {
   ]
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section ref={sectionRef} className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-light text-center mb-4 text-gray-900">How to Access</h2>
-        <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-          Multiple pathways to invest in India Avenue strategies
-        </p>
+        <div className={`transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <h2 className="text-4xl font-light text-center mb-4 text-gray-900 tracking-tight">How to Access</h2>
+          <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto leading-relaxed">
+            Multiple pathways to invest in India Avenue strategies
+          </p>
+        </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {platforms.map((platform, index) => (
             <div
               key={index}
-              className={`rounded-xl p-8 text-center transition-all ${
+              className={`rounded-xl p-8 text-center transition-all duration-300 ${
                 platform.highlighted
-                  ? 'bg-gradient-to-br from-indigo-600 to-saffron-500 text-white shadow-lg transform hover:scale-105'
-                  : 'bg-white text-gray-900 hover:shadow-md'
+                  ? 'bg-gradient-to-br from-indigo-600 to-saffron-500 text-white shadow-layered-lg transform hover:scale-110 hover:shadow-layered-xl'
+                  : 'bg-white text-gray-900 hover:shadow-layered-lg transform hover:scale-105 border border-gray-100'
+              } ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
               }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className={`flex justify-center mb-4 ${platform.highlighted ? 'text-white' : 'text-indigo-600'}`}>
+              <div className={`flex justify-center mb-4 transform transition-transform duration-300 hover:scale-110 ${
+                platform.highlighted ? 'text-white' : 'text-indigo-600'
+              }`}>
                 {platform.logo}
               </div>
-              <div className={`font-medium ${platform.highlighted ? 'text-lg' : ''}`}>
+              <div className={`font-medium tracking-tight ${platform.highlighted ? 'text-lg' : ''}`}>
                 {platform.name}
               </div>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 bg-white rounded-2xl p-8 shadow-sm">
-          <h3 className="text-2xl font-light mb-4 text-gray-900">Not sure which option is right for you?</h3>
-          <p className="text-gray-600 mb-6">
+        <div className={`mt-16 bg-white rounded-2xl p-8 shadow-layered hover:shadow-layered-lg transition-all duration-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`} style={{ transitionDelay: '500ms' }}>
+          <h3 className="text-2xl font-light mb-4 text-gray-900 tracking-tight">Not sure which option is right for you?</h3>
+          <p className="text-gray-600 mb-6 leading-relaxed">
             Our team can help you understand the best way to access India Avenue investment strategies 
             based on your specific needs and circumstances.
           </p>
-          <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-            Speak with an Advisor
+          <button className="group bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 shadow-layered hover:shadow-layered-lg transform hover:scale-105 active:scale-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <span className="flex items-center">
+              Speak with an Advisor
+              <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+            </span>
           </button>
         </div>
       </div>

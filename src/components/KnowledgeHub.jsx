@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react'
+
 // Professional SVG Icons
 const DocumentIcon = () => (
   <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
@@ -24,6 +26,32 @@ const PodcastIcon = () => (
 )
 
 function KnowledgeHub() {
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
+  }, [])
+
   const content = [
     {
       type: "Article",
@@ -64,21 +92,28 @@ function KnowledgeHub() {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section ref={sectionRef} id="research" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-light text-center mb-4 text-gray-900">Knowledge Hub</h2>
-        <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
-          Expert insights, research, and commentary on Indian markets
-        </p>
+        <div className={`transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <h2 className="text-4xl font-light text-center mb-4 text-gray-900 tracking-tight">Knowledge Hub</h2>
+          <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto leading-relaxed">
+            Expert insights, research, and commentary on Indian markets
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {content.map((item, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+              className={`bg-white border border-gray-200 rounded-xl overflow-hidden shadow-layered hover:shadow-layered-lg transition-all duration-300 cursor-pointer group transform hover:scale-[1.02] ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="h-48 bg-gradient-to-br from-indigo-100 to-saffron-100 flex items-center justify-center">
-                <div className="text-indigo-600">
+              <div className="h-48 bg-gradient-to-br from-indigo-100 to-saffron-100 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                <div className="text-indigo-600 transform transition-transform duration-300 group-hover:scale-110">
                   {item.type === 'Article' ? <DocumentIcon /> : 
                    item.type === 'Report' ? <ReportIcon /> : 
                    item.type === 'Video' ? <VideoIcon /> : <PodcastIcon />}
@@ -86,7 +121,7 @@ function KnowledgeHub() {
               </div>
               <div className="p-6">
                 <div className="text-xs font-medium text-saffron-600 mb-2">{item.type.toUpperCase()}</div>
-                <h3 className="text-xl font-medium mb-2 text-gray-900 group-hover:text-indigo-600 transition-colors">
+                <h3 className="text-xl font-medium mb-2 text-gray-900 group-hover:text-indigo-600 transition-colors tracking-tight">
                   {item.title}
                 </h3>
                 <p className="text-sm text-gray-500 mb-3">{item.date}</p>
@@ -96,9 +131,16 @@ function KnowledgeHub() {
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <button className="border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white px-8 py-3 rounded-lg font-medium transition-colors">
-            View All Content
+        <div className={`mt-12 text-center transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`} style={{ transitionDelay: '600ms' }}>
+          <button className="group border-2 border-indigo-600 text-indigo-600 hover:bg-indigo-600 hover:text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-layered hover:shadow-layered-lg transform hover:scale-105 active:scale-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            <span className="flex items-center justify-center">
+              View All Content
+              <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
           </button>
         </div>
       </div>
