@@ -49,8 +49,8 @@ function HeroBanner() {
             }}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/85 via-indigo-800/75 to-indigo-900/85"></div>
-        <div className="absolute inset-0 bg-black/15"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/50 via-indigo-800/40 to-indigo-900/50"></div>
+        <div className="absolute inset-0 bg-black/10"></div>
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center z-10">

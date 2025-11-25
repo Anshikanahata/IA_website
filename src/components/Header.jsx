@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -17,26 +18,27 @@ function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center z-10">
-            <a href="/" className="flex items-center">
+            <Link to="/" className="flex items-center">
               {!logoError ? (
                 <img
                   src={logoPath}
                   alt="India Avenue Investment Management"
-                  className="h-16 md:h-20 w-auto max-w-[280px] md:max-w-[320px] object-contain"
+                  className="h-18 md:h-24 w-auto max-w-[300px] md:max-w-[360px] object-contain drop-shadow-lg"
+                  style={{ filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }}
                   onError={() => setLogoError(true)}
                 />
               ) : (
-                <div className="text-2xl font-light">
+                <div className="text-3xl font-light">
                   <span className="text-indigo-900">India Avenue</span>
                   <span className="text-saffron-500 ml-2">→</span>
                 </div>
               )}
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium">Home</a>
+            <Link to="/" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium">Home</Link>
             
             {/* About Us Dropdown */}
             <div className="relative group">
@@ -57,10 +59,10 @@ function Header() {
               onMouseLeave={() => setOpenDropdown(null)}
               >
                 <div className="py-2">
-                  <a href="#our-journey" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Our Journey</a>
-                  <a href="#the-team" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">The Team</a>
-                  <a href="#board" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Board of Directors</a>
-                  <a href="#committee" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Investment Committee</a>
+                  <Link to="/about/our-journey" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Our Journey</Link>
+                  <Link to="/about/team" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">The Team</Link>
+                  <Link to="/about/board-of-directors" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Board of Directors</Link>
+                  <Link to="/about/investment-committee" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Investment Committee</Link>
                 </div>
               </div>
             </div>
@@ -84,9 +86,9 @@ function Header() {
               onMouseLeave={() => setOpenDropdown(null)}
               >
                 <div className="py-2">
-                  <a href="#why-india" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Why India</a>
-                  <a href="#why-india-avenue" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Why India Avenue</a>
-                  <a href="#esg" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Our ESG Philosophy</a>
+                  <Link to="/why-invest/why-india" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Why India</Link>
+                  <Link to="/why-invest/why-india-avenue" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Why India Avenue</Link>
+                  <Link to="/why-invest/esg-philosophy" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Our ESG Philosophy</Link>
                 </div>
               </div>
             </div>
@@ -110,13 +112,13 @@ function Header() {
               onMouseLeave={() => setOpenDropdown(null)}
               >
                 <div className="py-2">
-                  <a href="#equity-fund" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">India Avenue Equity Fund</a>
-                  <a href="#2030-fund" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">India 2030 Fund</a>
+                  <Link to="/funds/equity-fund" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">India Avenue Equity Fund</Link>
+                  <Link to="/funds/india-2030-fund" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">India 2030 Fund</Link>
                 </div>
               </div>
             </div>
 
-            <a href="#active-etf" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium">Active ETF</a>
+            <Link to="/active-etf" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium">Active ETF</Link>
             
             {/* Insights Dropdown */}
             <div className="relative group">
@@ -137,16 +139,14 @@ function Header() {
               onMouseLeave={() => setOpenDropdown(null)}
               >
                 <div className="py-2">
-                  <a href="#research" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Research</a>
-                  <a href="#grassroots" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Grassroots Experience</a>
-                  <a href="#whitepapers" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">White Papers</a>
-                  <a href="#media" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">India Avenue in Media</a>
-                  <a href="#podcast" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Podcast</a>
+                  <Link to="/insights/research" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Research</Link>
+                  <Link to="/insights/grassroots-experience" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">Grassroots Experience</Link>
+                  <Link to="/insights/media" className="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-900 transition-colors">India Avenue in Media</Link>
                 </div>
               </div>
             </div>
 
-            <a href="#contact" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium">Contact</a>
+            <Link to="/contact" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium">Contact</Link>
             
             <button className="group bg-saffron-500 hover:bg-saffron-600 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 shadow-layered hover:shadow-layered-lg transform hover:scale-105 active:scale-100 focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:ring-offset-2">
               <span className="flex items-center">
@@ -177,7 +177,7 @@ function Header() {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-200">
             <div className="flex flex-col space-y-4">
-              <a href="#home" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Home</a>
+              <Link to="/" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Home</Link>
               
               <div>
                 <button className="text-gray-700 hover:text-indigo-900 transition-colors font-medium w-full text-left flex items-center justify-between" onClick={() => setOpenDropdown(openDropdown === 'about-mobile' ? null : 'about-mobile')}>
@@ -188,10 +188,10 @@ function Header() {
                 </button>
                 {openDropdown === 'about-mobile' && (
                   <div className="pl-4 mt-2 space-y-2">
-                    <a href="#our-journey" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Our Journey</a>
-                    <a href="#the-team" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>The Team</a>
-                    <a href="#board" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Board of Directors</a>
-                    <a href="#committee" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Investment Committee</a>
+                    <Link to="/about/our-journey" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Our Journey</Link>
+                    <Link to="/about/team" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>The Team</Link>
+                    <Link to="/about/board-of-directors" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Board of Directors</Link>
+                    <Link to="/about/investment-committee" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Investment Committee</Link>
                   </div>
                 )}
               </div>
@@ -205,9 +205,9 @@ function Header() {
                 </button>
                 {openDropdown === 'why-invest-mobile' && (
                   <div className="pl-4 mt-2 space-y-2">
-                    <a href="#why-india" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Why India</a>
-                    <a href="#why-india-avenue" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Why India Avenue</a>
-                    <a href="#esg" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Our ESG Philosophy</a>
+                    <Link to="/why-invest/why-india" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Why India</Link>
+                    <Link to="/why-invest/why-india-avenue" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Why India Avenue</Link>
+                    <Link to="/why-invest/esg-philosophy" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Our ESG Philosophy</Link>
                   </div>
                 )}
               </div>
@@ -221,13 +221,13 @@ function Header() {
                 </button>
                 {openDropdown === 'funds-mobile' && (
                   <div className="pl-4 mt-2 space-y-2">
-                    <a href="#equity-fund" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>India Avenue Equity Fund</a>
-                    <a href="#2030-fund" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>India 2030 Fund</a>
+                    <Link to="/funds/equity-fund" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>India Avenue Equity Fund</Link>
+                    <Link to="/funds/india-2030-fund" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>India 2030 Fund</Link>
                   </div>
                 )}
               </div>
 
-              <a href="#active-etf" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Active ETF</a>
+              <Link to="/active-etf" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Active ETF</Link>
 
               <div>
                 <button className="text-gray-700 hover:text-indigo-900 transition-colors font-medium w-full text-left flex items-center justify-between" onClick={() => setOpenDropdown(openDropdown === 'insights-mobile' ? null : 'insights-mobile')}>
@@ -238,16 +238,14 @@ function Header() {
                 </button>
                 {openDropdown === 'insights-mobile' && (
                   <div className="pl-4 mt-2 space-y-2">
-                    <a href="#research" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Research</a>
-                    <a href="#grassroots" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Grassroots Experience</a>
-                    <a href="#whitepapers" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>White Papers</a>
-                    <a href="#media" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>India Avenue in Media</a>
-                    <a href="#podcast" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Podcast</a>
+                    <Link to="/insights/research" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Research</Link>
+                    <Link to="/insights/grassroots-experience" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>Grassroots Experience</Link>
+                    <Link to="/insights/media" className="block text-gray-600 hover:text-indigo-900" onClick={() => setMobileMenuOpen(false)}>India Avenue in Media</Link>
                   </div>
                 )}
               </div>
 
-              <a href="#contact" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Contact</a>
+              <Link to="/contact" className="text-gray-700 hover:text-indigo-900 transition-colors font-medium" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
               
               <button className="group bg-saffron-500 hover:bg-saffron-600 text-white px-6 py-2 rounded-lg font-medium transition-all duration-300 shadow-layered hover:shadow-layered-lg transform hover:scale-105 active:scale-100 w-full focus:outline-none focus:ring-2 focus:ring-saffron-400 focus:ring-offset-2">
                 <span className="flex items-center justify-center">

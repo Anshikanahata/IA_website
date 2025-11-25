@@ -151,6 +151,7 @@ body {
 
 .transform-style-3d {
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 .backface-hidden {
@@ -163,4 +164,14 @@ body {
 
 .group:hover .group-hover\:rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

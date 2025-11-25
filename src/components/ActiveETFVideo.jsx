@@ -54,14 +54,16 @@ function ActiveETFVideo() {
           <div className={`transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
           }`} style={{ transitionDelay: '200ms' }}>
-            <div className="bg-gradient-to-br from-indigo-100 to-saffron-100 rounded-2xl p-8 h-96 flex items-center justify-center shadow-layered-lg">
-              <div className="text-center">
-                <svg className="w-24 h-24 text-indigo-600 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-gray-600">[Video Player Placeholder]</p>
-                <p className="text-sm text-gray-500 mt-2">Add your video embed here</p>
+            <div className="rounded-2xl overflow-hidden shadow-layered-lg">
+              <div className="relative" style={{ paddingBottom: '56.25%' }}>
+                <iframe
+                  className="absolute top-0 left-0 w-full h-full"
+                  src="https://www.youtube.com/embed/XUhYNHlLW2g"
+                  title="India Avenue Active ETF Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
           </div>

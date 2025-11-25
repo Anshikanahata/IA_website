@@ -1,33 +1,43 @@
 import { useState, useEffect, useRef } from 'react'
 
-// Icons for Pillars
-const ChartIcon = () => (
-  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+// Elegant thin outline icons
+const GrowthIcon = () => (
+  <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2 20h20M5 20V10m4 10V4m4 16v-8m4 8V8m4 12v-4" />
   </svg>
 )
 
 const TargetIcon = () => (
-  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+  <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+    <circle cx="12" cy="12" r="10" />
+    <circle cx="12" cy="12" r="6" />
+    <circle cx="12" cy="12" r="2" />
+    <path strokeLinecap="round" d="M12 2v4m0 12v4M2 12h4m12 0h4" />
   </svg>
 )
 
 const NetworkIcon = () => (
-  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+  <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+    <circle cx="12" cy="5" r="2" />
+    <circle cx="5" cy="19" r="2" />
+    <circle cx="19" cy="19" r="2" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 7v4m0 0l-5.5 6M12 11l5.5 6" />
   </svg>
 )
 
-const CubeIcon = () => (
-  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+const PortfolioIcon = () => (
+  <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+    <rect x="3" y="3" width="7" height="7" rx="1" />
+    <rect x="14" y="3" width="7" height="7" rx="1" />
+    <rect x="3" y="14" width="7" height="7" rx="1" />
+    <rect x="14" y="14" width="7" height="7" rx="1" />
   </svg>
 )
 
-const ThumbUpIcon = () => (
-  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+const AccessIcon = () => (
+  <svg className="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 7h2a4 4 0 014 4v0a4 4 0 01-4 4h-2m-6 0H7a4 4 0 01-4-4v0a4 4 0 014-4h2" />
+    <path strokeLinecap="round" d="M8 11h8" />
   </svg>
 )
 
@@ -44,7 +54,7 @@ function FivePillarCarousel() {
           }
         })
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     )
 
     if (sectionRef.current) {
@@ -60,110 +70,159 @@ function FivePillarCarousel() {
 
   const pillars = [
     {
+      number: "01",
       title: "India's Growth Story",
-      description: "India's Growth Story, driven by its demographics, provides a compelling opportunity for our investors",
-      color: "from-saffron-500 to-saffron-600",
-      backColor: "from-saffron-50 to-saffron-100",
-      textColor: "text-saffron-900",
-      icon: <ChartIcon />
+      description: "India's growth trajectory, driven by favorable demographics and economic reforms, presents a compelling long-term investment opportunity.",
+      icon: <GrowthIcon />
     },
     {
+      number: "02",
       title: "Competitive Edge",
-      description: "India Avenue's focus and expertise on India, provides our investors with a competitive edge",
-      color: "from-indigo-600 to-indigo-700",
-      backColor: "from-indigo-50 to-indigo-100",
-      textColor: "text-indigo-900",
+      description: "Our singular focus and deep expertise on India provides investors with differentiated insights and a distinct competitive advantage.",
       icon: <TargetIcon />
     },
     {
+      number: "03",
       title: "Local Network",
-      description: "Our robust local network in India, gives us greater access to knowledge and insights to build smart portfolios",
-      color: "from-saffron-500 to-saffron-600",
-      backColor: "from-saffron-50 to-saffron-100",
-      textColor: "text-saffron-900",
+      description: "Our extensive on-ground network across India enables superior access to knowledge, insights, and emerging opportunities.",
       icon: <NetworkIcon />
     },
     {
+      number: "04",
       title: "Smart Portfolio Construction",
-      description: "This is embedded in our portfolio construction, which is leveraged to the growth story. Our investors invest like locals, rather than foreigners",
-      color: "from-indigo-600 to-indigo-700",
-      backColor: "from-indigo-50 to-indigo-100",
-      textColor: "text-indigo-900",
-      icon: <CubeIcon />
+      description: "Sophisticated portfolio construction leveraging local expertise allows our investors to participate like insiders, not outsiders.",
+      icon: <PortfolioIcon />
     },
     {
+      number: "05",
       title: "Easy Accessibility",
-      description: "The ease and accessibility of our funds makes it simple for investors",
-      color: "from-saffron-500 to-saffron-600",
-      backColor: "from-saffron-50 to-saffron-100",
-      textColor: "text-saffron-900",
-      icon: <ThumbUpIcon />
+      description: "Streamlined fund structures and transparent processes make investing in India simple and accessible for all investors.",
+      icon: <AccessIcon />
     }
   ]
 
   return (
-    <section ref={sectionRef} id="why-india-avenue" className="py-20 bg-gray-50">
-      {/* Subtle Texture Background */}
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0)`,
-        backgroundSize: '20px 20px'
-      }}></div>
+    <section ref={sectionRef} id="why-india-avenue" className="py-24 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+      {/* Subtle geometric background pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute top-0 left-0 w-full h-full" style={{
+          backgroundImage: `linear-gradient(90deg, #1e293b 1px, transparent 1px), linear-gradient(#1e293b 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }}></div>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className={`transition-all duration-1000 ${
+      {/* Subtle accent line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-indigo-300 to-transparent"></div>
+
+      <div className="w-full px-4 sm:px-6 lg:px-16 xl:px-24 relative z-10">
+        {/* Header */}
+        <div className={`text-center mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-3xl md:text-4xl font-light text-center mb-3 text-gray-900 tracking-tight">Our 5 Pillars</h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            The foundation of our investment approach and what sets us apart
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-indigo-400"></div>
+            <span className="text-xs font-medium tracking-[0.2em] text-indigo-600 uppercase">Our Foundation</span>
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-indigo-400"></div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-light text-slate-900 tracking-tight mb-4">
+            The Five Pillars
+          </h2>
+          <p className="text-slate-500 max-w-xl mx-auto text-lg font-light leading-relaxed">
+            The foundational principles that guide our investment philosophy and set us apart
           </p>
         </div>
 
-        {/* Responsive Grid with Flip Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 h-80">
+        {/* Pillars Grid - Flip Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 xl:gap-6">
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className={`group perspective-1000 h-full ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              className={`group perspective-1000 h-[320px] transition-all duration-700 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{ transitionDelay: `${index * 100 + 200}ms` }}
             >
-              {/* Flip Card Inner Container */}
-              <div className="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
+              {/* Flip Card Container */}
+              <div className="relative w-full h-full transition-transform duration-700 ease-out transform-style-3d group-hover:rotate-y-180">
                 
                 {/* Front Side */}
-                <div className="absolute w-full h-full bg-white rounded-xl shadow-md backface-hidden border border-gray-100 p-6 flex flex-col items-center justify-center text-center">
-                  {/* Colored Accent Top Bar */}
-                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${pillar.color} rounded-t-xl`}></div>
-                  
-                  {/* Icon Badge */}
-                  <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${pillar.color} flex items-center justify-center shadow-lg mb-6 transform group-hover:scale-110 transition-transform duration-300`}>
-                    {pillar.icon}
+                <div className="absolute w-full h-full backface-hidden">
+                  <div className="h-full bg-white rounded-md border border-slate-200/80 p-8 
+                    shadow-sm flex flex-col justify-between">
+                    
+                    {/* Top accent line */}
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+                    
+                    {/* Top Content */}
+                    <div>
+                      {/* Number */}
+                      <div className="text-xs font-medium tracking-wider mb-8 text-slate-300">
+                        {pillar.number}
+                      </div>
+
+                      {/* Icon */}
+                      <div className="text-indigo-500 mb-8">
+                        {pillar.icon}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-medium tracking-tight text-slate-800 leading-snug">
+                        {pillar.title}
+                      </h3>
+                    </div>
+
+                    {/* Bottom accent */}
+                    <div className="w-10 h-0.5 rounded-full bg-gradient-to-r from-saffron-400 to-saffron-500"></div>
                   </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-xl font-semibold text-gray-900">
-                    {pillar.title}
-                  </h3>
                 </div>
 
                 {/* Back Side */}
-                <div className={`absolute w-full h-full bg-gradient-to-br ${pillar.backColor} rounded-xl shadow-xl backface-hidden rotate-y-180 p-6 flex flex-col items-center justify-center text-center border border-gray-100`}>
-                  {/* Colored Accent Top Bar */}
-                  <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${pillar.color} rounded-t-xl`}></div>
-                  
-                  {/* Description */}
-                  <p className={`${pillar.textColor} text-sm leading-relaxed font-medium`}>
-                    {pillar.description}
-                  </p>
-                  
-                  {/* Bottom Decoration */}
-                  <div className={`mt-4 w-12 h-1 rounded-full bg-gradient-to-r ${pillar.color}`}></div>
+                <div className="absolute w-full h-full backface-hidden rotate-y-180">
+                  <div className="h-full bg-gradient-to-br from-indigo-900 via-indigo-800 to-slate-900 rounded-md p-8 
+                    shadow-xl flex flex-col justify-between">
+                    
+                    {/* Top accent line */}
+                    <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-saffron-400/50 to-transparent"></div>
+                    
+                    {/* Top Content */}
+                    <div>
+                      {/* Number */}
+                      <div className="text-xs font-medium tracking-wider mb-6 text-indigo-300/60">
+                        {pillar.number}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-lg font-medium tracking-tight text-white mb-6 leading-snug">
+                        {pillar.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-sm text-indigo-100/80 leading-relaxed font-light">
+                        {pillar.description}
+                      </p>
+                    </div>
+
+                    {/* Bottom accent */}
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-0.5 rounded-full bg-gradient-to-r from-saffron-400 to-saffron-500"></div>
+                      <div className="w-2 h-0.5 rounded-full bg-saffron-400/40"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom decorative element */}
+        <div className={`flex justify-center mt-16 transition-all duration-1000 delay-700 ${
+          isVisible ? 'opacity-100' : 'opacity-0'
+        }`}>
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-indigo-300"></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-slate-300"></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-saffron-300"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -171,4 +230,3 @@ function FivePillarCarousel() {
 }
 
 export default FivePillarCarousel
-
