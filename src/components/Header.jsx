@@ -5,8 +5,19 @@ function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [logoError, setLogoError] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
+  const [logoPath, setLogoPath] = useState('/Logo.jpg')
 
-  const logoPath = '/logo.png'
+  // Try different logo paths if the first one fails
+  const tryAlternativeLogoPaths = () => {
+    const alternatives = ['/logo.jpg', '/logo.png', '/Logo.png', '/Logo.JPG']
+    const currentIndex = alternatives.indexOf(logoPath)
+    if (currentIndex < alternatives.length - 1) {
+      setLogoPath(alternatives[currentIndex + 1])
+      setLogoError(false)
+    } else {
+      setLogoError(true)
+    }
+  }
 
   const handleDropdownToggle = (dropdown) => {
     setOpenDropdown(openDropdown === dropdown ? null : dropdown)
@@ -14,18 +25,28 @@ function Header() {
 
   return (
     <header className="relative bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <nav className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="relative max-w-7xl mx-auto pl-0 pr-4 sm:pr-6 lg:pr-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="flex items-center z-10">
+          <div className="flex items-center z-10 -ml-1 sm:-ml-2">
             <Link to="/" className="flex items-center">
               {!logoError ? (
                 <img
                   src={logoPath}
                   alt="India Avenue Investment Management"
-                  className="h-18 md:h-24 w-auto max-w-[300px] md:max-w-[360px] object-contain drop-shadow-lg"
-                  style={{ filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))' }}
-                  onError={() => setLogoError(true)}
+                  className="h-16 md:h-20 w-auto max-w-[300px] md:max-w-[360px] object-contain"
+                  style={{ 
+                    backgroundColor: 'transparent',
+                    display: 'block',
+                    mixBlendMode: 'normal'
+                  }}
+                  onError={(e) => {
+                    console.error('Logo image failed to load:', logoPath)
+                    tryAlternativeLogoPaths()
+                  }}
+                  onLoad={() => {
+                    console.log('Logo image loaded successfully:', logoPath)
+                  }}
                 />
               ) : (
                 <div className="text-3xl font-light">

@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, useMemo } from 'react'
 
 // Media Icon
-const MediaIcon = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+const MediaIcon = ({ className = "w-5 h-5" }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z" />
   </svg>
 )
@@ -16,7 +16,8 @@ const ShareIcon = () => (
 
 // Loading Skeleton Component
 const CardSkeleton = () => (
-  <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 animate-pulse">
+  <div className="bg-white rounded-2xl p-8 border-2 border-gray-300 border-l-4 shadow-lg shadow-gray-500/20 relative animate-pulse">
+    <div className="absolute top-0 left-0 right-0 h-1 bg-gray-400 rounded-t-2xl"></div>
     <div className="h-48 bg-gray-200 rounded-lg mb-6"></div>
     <div className="h-6 bg-gray-200 rounded w-24 mb-4"></div>
     <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
@@ -465,6 +466,75 @@ function Media() {
     'videos': 'bg-red-100 text-red-700 border-red-200'
   }
 
+  // Category border and accent colors for cards
+  const getCategoryCardStyle = (category) => {
+    switch (category) {
+      case 'article':
+        return {
+          borderColor: 'border-indigo-500',
+          borderColorHover: 'hover:border-indigo-600',
+          leftBorderColor: 'border-l-indigo-500',
+          accentBarColor: 'bg-indigo-500',
+          shadowColor: 'shadow-indigo-500/20',
+          shadowColorHover: 'hover:shadow-indigo-500/30'
+        }
+      case 'white-paper':
+        return {
+          borderColor: 'border-navy-600',
+          borderColorHover: 'hover:border-navy-700',
+          leftBorderColor: 'border-l-navy-600',
+          accentBarColor: 'bg-navy-600',
+          shadowColor: 'shadow-navy-500/20',
+          shadowColorHover: 'hover:shadow-navy-500/30'
+        }
+      case 'videos':
+        return {
+          borderColor: 'border-red-500',
+          borderColorHover: 'hover:border-red-600',
+          leftBorderColor: 'border-l-red-500',
+          accentBarColor: 'bg-red-500',
+          shadowColor: 'shadow-red-500/20',
+          shadowColorHover: 'hover:shadow-red-500/30'
+        }
+      case 'podcast':
+        return {
+          borderColor: 'border-purple-500',
+          borderColorHover: 'hover:border-purple-600',
+          leftBorderColor: 'border-l-purple-500',
+          accentBarColor: 'bg-purple-500',
+          shadowColor: 'shadow-purple-500/20',
+          shadowColorHover: 'hover:shadow-purple-500/30'
+        }
+      case 'press-release':
+        return {
+          borderColor: 'border-cyan-500',
+          borderColorHover: 'hover:border-cyan-600',
+          leftBorderColor: 'border-l-cyan-500',
+          accentBarColor: 'bg-cyan-500',
+          shadowColor: 'shadow-cyan-500/20',
+          shadowColorHover: 'hover:shadow-cyan-500/30'
+        }
+      case 'interview':
+        return {
+          borderColor: 'border-green-500',
+          borderColorHover: 'hover:border-green-600',
+          leftBorderColor: 'border-l-green-500',
+          accentBarColor: 'bg-green-500',
+          shadowColor: 'shadow-green-500/20',
+          shadowColorHover: 'hover:shadow-green-500/30'
+        }
+      default:
+        return {
+          borderColor: 'border-gray-400',
+          borderColorHover: 'hover:border-gray-500',
+          leftBorderColor: 'border-l-gray-400',
+          accentBarColor: 'bg-gray-400',
+          shadowColor: 'shadow-gray-500/20',
+          shadowColorHover: 'hover:shadow-gray-500/30'
+        }
+    }
+  }
+
   const categoryLabels = {
     'article': 'Article',
     'press-release': 'Press Release',
@@ -790,10 +860,10 @@ function Media() {
                               } shadow-lg transform -translate-x-1/2 z-10 transition-all duration-300 hover:scale-125 hover:bg-saffron-500`}></div>
                               
                               <div
-                                className={`rounded-2xl p-8 shadow-sm border transition-all duration-700 hover:shadow-xl hover:-translate-y-1 ${
+                                className={`rounded-2xl p-8 border-2 ${getCategoryCardStyle(item.category).borderColor} ${getCategoryCardStyle(item.category).borderColorHover} ${getCategoryCardStyle(item.category).leftBorderColor} border-l-4 ${getCategoryCardStyle(item.category).shadowColor} ${getCategoryCardStyle(item.category).shadowColorHover} transition-all duration-700 hover:shadow-xl hover:-translate-y-1 relative ${
                                   darkMode
-                                    ? 'bg-gray-800 border-gray-700 hover:border-indigo-600'
-                                    : 'bg-white border-gray-100 hover:border-indigo-200'
+                                    ? 'bg-gray-800 hover:bg-gray-750'
+                                    : 'bg-white'
                                 } ${
                                   selectedItem === item ? 'ring-2 ring-indigo-500' : ''
                                 } ${
@@ -814,6 +884,8 @@ function Media() {
                                 role="button"
                                 aria-label={`Select ${item.title}`}
                               >
+                                {/* Top accent bar */}
+                                <div className={`absolute top-0 left-0 right-0 h-1 ${getCategoryCardStyle(item.category).accentBarColor} rounded-t-2xl z-10`}></div>
                                 {/* Category and Month Badge */}
                                 <div className="flex items-center gap-2 mb-4 flex-wrap">
                                   <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border ${
@@ -920,7 +992,7 @@ function Media() {
                                       className="h-6 w-auto object-contain"
                                     />
                                   ) : (
-                                    <MediaIcon className={darkMode ? 'text-gray-400' : 'text-gray-500'} />
+                                    <MediaIcon className={`w-6 h-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />
                                   )}
                                   <span className={`text-sm font-medium ${
                                     darkMode ? 'text-gray-300' : 'text-gray-500'
@@ -1090,15 +1162,19 @@ function Media() {
             {isLoading ? (
               Array(5).fill(0).map((_, i) => <CardSkeleton key={i} />)
             ) : (
-              filteredAndSortedItems.map((item, index) => (
+              filteredAndSortedItems.map((item, index) => {
+                const cardStyle = getCategoryCardStyle(item.category)
+                return (
                 <div
                   key={index}
-                  className={`p-6 rounded-xl border transition-all hover:shadow-lg ${
+                  className={`p-6 rounded-xl border-2 ${cardStyle.borderColor} ${cardStyle.borderColorHover} ${cardStyle.leftBorderColor} border-l-4 ${cardStyle.shadowColor} ${cardStyle.shadowColorHover} transition-all hover:shadow-xl relative ${
                     darkMode
-                      ? 'bg-gray-800 border-gray-700'
-                      : 'bg-white border-gray-100'
+                      ? 'bg-gray-800'
+                      : 'bg-white'
                   }`}
                 >
+                  {/* Top accent bar */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 ${cardStyle.accentBarColor} rounded-t-xl z-10`}></div>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -1142,7 +1218,8 @@ function Media() {
                     </a>
                   </div>
                 </div>
-              ))
+                )
+              })
             )}
           </div>
         )}

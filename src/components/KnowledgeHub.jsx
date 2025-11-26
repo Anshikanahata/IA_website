@@ -26,6 +26,17 @@ const PodcastIcon = () => (
   </svg>
 )
 
+// Generate default thumbnail based on category
+const getDefaultThumbnail = (type) => {
+  const thumbnails = {
+    'Video': "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23dc2626'/%3E%3Cg transform='translate(200 112.5)'%3E%3Ccircle r='35' fill='white' opacity='0.9'/%3E%3Cpath d='M-8,-15 L-8,15 L18,0 Z' fill='%23dc2626'/%3E%3C/g%3E%3Ctext x='200' y='190' text-anchor='middle' fill='white' font-size='16' font-family='Arial, sans-serif' font-weight='600'%3EVIDEO%3C/text%3E%3C/svg%3E",
+    'Report': "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23334e68'/%3E%3Cg transform='translate(200 112.5)'%3E%3Cg transform='translate(-60 -40)'%3E%3Cpath d='M40,10 L40,70 L80,70 L80,10 Z M50,20 L70,20 L70,60 L50,60 Z' fill='%23ffffff' opacity='0.9'/%3E%3Cpath d='M20,40 L20,70 L40,70 L40,40 Z M25,45 L35,45 L35,65 L25,65 Z' fill='%23ffffff' opacity='0.7'/%3E%3Cpath d='M80,30 L80,70 L100,70 L100,30 Z M85,35 L95,35 L95,65 L85,65 Z' fill='%23ffffff' opacity='0.8'/%3E%3C/g%3E%3Ctext x='0' y='60' text-anchor='middle' fill='%23ffffff' font-size='14' font-family='Arial, sans-serif' font-weight='600'%3EResearch Report%3C/text%3E%3C/g%3E%3C/svg%3E",
+    'Podcast': "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%239333ea'/%3E%3Cg transform='translate(200 112.5)'%3E%3Cpath d='M-10,-30 Q-10,-40 0,-40 Q10,-40 10,-30 L10,0 Q10,10 0,10 Q-10,10 -10,0 Z' fill='white' opacity='0.9'/%3E%3Cpath d='M-20,-20 Q-20,-10 -20,0' stroke='white' stroke-width='3' fill='none' opacity='0.7'/%3E%3Cpath d='M20,-20 Q20,-10 20,0' stroke='white' stroke-width='3' fill='none' opacity='0.7'/%3E%3Cpath d='M0,10 L0,25' stroke='white' stroke-width='3' opacity='0.9'/%3E%3Cpath d='M-8,25 L8,25' stroke='white' stroke-width='3' opacity='0.9'/%3E%3C/g%3E%3Ctext x='200' y='190' text-anchor='middle' fill='white' font-size='16' font-family='Arial, sans-serif' font-weight='600'%3EPODCAST%3C/text%3E%3C/svg%3E",
+    'Article': "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%234f46e5'/%3E%3Cg transform='translate(200 112.5)'%3E%3Crect x='-40' y='-50' width='80' height='100' rx='4' fill='white' opacity='0.9'/%3E%3Crect x='-30' y='-40' width='60' height='4' fill='%234f46e5'/%3E%3Crect x='-30' y='-30' width='60' height='3' fill='%234f46e5' opacity='0.5'/%3E%3Crect x='-30' y='-22' width='60' height='3' fill='%234f46e5' opacity='0.5'/%3E%3Crect x='-30' y='-14' width='40' height='3' fill='%234f46e5' opacity='0.5'/%3E%3C/g%3E%3Ctext x='200' y='190' text-anchor='middle' fill='white' font-size='16' font-family='Arial, sans-serif' font-weight='600'%3EARTICLE%3C/text%3E%3C/svg%3E"
+  }
+  return thumbnails[type] || thumbnails['Article']
+}
+
 // Category-specific styling configurations
 const getCategoryStyle = (type) => {
   switch (type) {
@@ -33,31 +44,66 @@ const getCategoryStyle = (type) => {
       return {
         gradient: 'from-indigo-100 to-blue-100',
         iconColor: 'text-indigo-600',
-        labelColor: 'text-indigo-600'
+        labelColor: 'text-indigo-600',
+        borderColor: 'border-indigo-500',
+        borderColorHover: 'hover:border-indigo-600',
+        leftBorderColor: 'border-l-indigo-500',
+        shadowColor: 'shadow-indigo-500/20',
+        shadowColorHover: 'hover:shadow-indigo-500/30',
+        topBorderColor: 'border-t-indigo-500',
+        accentBarColor: 'bg-indigo-500'
       }
     case 'Report':
       return {
         gradient: 'from-navy-100 via-indigo-100 to-slate-100',
         iconColor: 'text-navy-600',
-        labelColor: 'text-navy-600'
+        labelColor: 'text-navy-600',
+        borderColor: 'border-navy-600',
+        borderColorHover: 'hover:border-navy-700',
+        leftBorderColor: 'border-l-navy-600',
+        shadowColor: 'shadow-navy-500/20',
+        shadowColorHover: 'hover:shadow-navy-500/30',
+        topBorderColor: 'border-t-navy-600',
+        accentBarColor: 'bg-navy-600'
       }
     case 'Video':
       return {
         gradient: 'from-purple-100 to-indigo-100',
         iconColor: 'text-purple-600',
-        labelColor: 'text-purple-600'
+        labelColor: 'text-purple-600',
+        borderColor: 'border-red-500',
+        borderColorHover: 'hover:border-red-600',
+        leftBorderColor: 'border-l-red-500',
+        shadowColor: 'shadow-red-500/20',
+        shadowColorHover: 'hover:shadow-red-500/30',
+        topBorderColor: 'border-t-red-500',
+        accentBarColor: 'bg-red-500'
       }
     case 'Podcast':
       return {
         gradient: 'from-saffron-100 to-orange-100',
         iconColor: 'text-saffron-600',
-        labelColor: 'text-saffron-600'
+        labelColor: 'text-saffron-600',
+        borderColor: 'border-purple-500',
+        borderColorHover: 'hover:border-purple-600',
+        leftBorderColor: 'border-l-purple-500',
+        shadowColor: 'shadow-purple-500/20',
+        shadowColorHover: 'hover:shadow-purple-500/30',
+        topBorderColor: 'border-t-purple-500',
+        accentBarColor: 'bg-purple-500'
       }
     default:
       return {
         gradient: 'from-indigo-100 to-saffron-100',
         iconColor: 'text-indigo-600',
-        labelColor: 'text-saffron-600'
+        labelColor: 'text-saffron-600',
+        borderColor: 'border-indigo-500',
+        borderColorHover: 'hover:border-indigo-600',
+        leftBorderColor: 'border-l-indigo-500',
+        shadowColor: 'shadow-indigo-500/20',
+        shadowColorHover: 'hover:shadow-indigo-500/30',
+        topBorderColor: 'border-t-indigo-500',
+        accentBarColor: 'bg-indigo-500'
       }
   }
 }
@@ -103,39 +149,45 @@ function KnowledgeHub() {
       title: "India's Market and Global Opportunities",
       date: "January 2025",
       description: "Watch our latest interview on Ausbiz discussing India's market dynamics and investment opportunities",
-      link: "/insights/media"
+      link: "/insights/media",
+      thumbnail: "https://img.youtube.com/vi/XUhYNHlLW2g/maxresdefault.jpg"
     },
     {
       type: "Report",
       title: "India's Rising Export Potential",
       date: "October 2024",
       description: "Comprehensive report analyzing India's export sector growth and key opportunities in global trade",
-      link: "/insights/media"
+      link: "/insights/media",
+      thumbnail: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'%3E%3Crect width='400' height='225' fill='%23334e68'/%3E%3Cg transform='translate(200 112.5)'%3E%3Cg transform='translate(-60 -40)'%3E%3Cpath d='M40,10 L40,70 L80,70 L80,10 Z M50,20 L70,20 L70,60 L50,60 Z' fill='%23ffffff' opacity='0.9'/%3E%3Cpath d='M20,40 L20,70 L40,70 L40,40 Z M25,45 L35,45 L35,65 L25,65 Z' fill='%23ffffff' opacity='0.7'/%3E%3Cpath d='M80,30 L80,70 L100,70 L100,30 Z M85,35 L95,35 L95,65 L85,65 Z' fill='%23ffffff' opacity='0.8'/%3E%3C/g%3E%3Ctext x='0' y='60' text-anchor='middle' fill='%23ffffff' font-size='14' font-family='Arial, sans-serif' font-weight='600'%3EResearch Report%3C/text%3E%3Ctext x='0' y='78' text-anchor='middle' fill='%23a5b4c8' font-size='11' font-family='Arial, sans-serif'%3EIndia's Rising Export Potential%3C/text%3E%3C/g%3E%3C/svg%3E"
     },
     {
       type: "Video",
       title: "India Avenue Market Insights",
       date: "January 2025",
       description: "In-depth discussion about India's economic landscape and emerging investment opportunities",
-      link: "/insights/media"
+      link: "/insights/media",
+      thumbnail: "https://img.youtube.com/vi/6yjlaM5XWKA/maxresdefault.jpg"
     },
     {
       type: "Video",
       title: "Grassroots Tour: Bangalore Tech Hub",
       date: "September 2024",
       description: "Behind-the-scenes from our research tour of India's Silicon Valley",
+      thumbnail: null
     },
     {
       type: "Article",
       title: "Infrastructure Investment Update",
       date: "August 2024",
       description: "Analyzing India's massive infrastructure build-out",
+      thumbnail: null
     },
     {
       type: "Report",
       title: "Healthcare Sector Deep Dive",
       date: "July 2024",
       description: "Exploring opportunities in India's growing healthcare industry",
+      thumbnail: null
     },
   ]
 
@@ -161,17 +213,46 @@ function KnowledgeHub() {
               <div
                 key={index}
                 onClick={() => handleCardClick(item)}
-                className={`bg-white border border-gray-200 rounded-xl overflow-hidden shadow-layered hover:shadow-layered-lg transition-all duration-300 cursor-pointer group transform hover:scale-[1.02] ${
+                className={`bg-white border-2 ${style.borderColor} ${style.borderColorHover} ${style.leftBorderColor} border-l-4 rounded-xl overflow-hidden shadow-layered ${style.shadowColor} ${style.shadowColorHover} hover:shadow-xl transition-all duration-300 cursor-pointer group transform hover:scale-[1.02] relative ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <div className={`h-48 bg-gradient-to-br ${style.gradient} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
-                  <div className={`${style.iconColor} transform transition-transform duration-300 group-hover:scale-110`}>
-                    {item.type === 'Article' ? <DocumentIcon /> : 
-                     item.type === 'Report' ? <ReportIcon /> : 
-                     item.type === 'Video' ? <VideoIcon /> : <PodcastIcon />}
+                {/* Top accent bar */}
+                <div className={`absolute top-0 left-0 right-0 h-1 ${style.accentBarColor} z-10`}></div>
+                
+                <div className="h-48 relative overflow-hidden bg-gray-100">
+                  <img 
+                    src={item.thumbnail || getDefaultThumbnail(item.type)} 
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  {/* Overlay gradient for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Type indicator badge */}
+                  <div className="absolute top-3 right-3">
+                    <span className={`px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg ${
+                      item.type === 'Video' ? 'bg-red-600 text-white' :
+                      item.type === 'Report' ? 'bg-navy-700 text-white' :
+                      item.type === 'Podcast' ? 'bg-purple-600 text-white' :
+                      'bg-indigo-600 text-white'
+                    }`}>
+                      {item.type.toUpperCase()}
+                    </span>
                   </div>
+                  
+                  {/* Play button overlay for videos */}
+                  {item.type === 'Video' && (
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-110 transition-transform">
+                        <svg className="w-8 h-8 text-red-600 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z"/>
+                        </svg>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="p-6">
                   <div className={`text-xs font-medium ${style.labelColor} mb-2`}>{item.type.toUpperCase()}</div>

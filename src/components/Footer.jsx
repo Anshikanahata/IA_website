@@ -1,18 +1,18 @@
 // Professional SVG Icons
 const EmailIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
   </svg>
 )
 
 const PhoneIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
   </svg>
 )
 
 const LocationPinIcon = () => (
-  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
   </svg>
@@ -20,23 +20,35 @@ const LocationPinIcon = () => (
 
 function Footer() {
   return (
-    <footer id="contact" className="bg-indigo-900 text-white py-12">
+    <footer id="contact" className="bg-indigo-900 text-white py-16 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        {/* Logo at the top left */}
+        <div className="mb-12">
+          <img 
+            src="/Logo-footer.png" 
+            alt="India Avenue Investment Management" 
+            className="h-16 md:h-20 w-auto object-contain"
+            onError={(e) => {
+              e.target.style.display = 'none'
+            }}
+          />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Company Info */}
           <div>
-            <div className="text-2xl font-light mb-4">
+            <div className="text-2xl md:text-3xl font-light mb-5">
               India Avenue
             </div>
-            <p className="text-indigo-200 text-sm leading-relaxed">
+            <p className="text-indigo-200 text-base md:text-lg leading-relaxed">
               Institutional-grade India investment opportunities backed by grassroots insights.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-medium mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-medium mb-5 text-lg md:text-xl">Quick Links</h3>
+            <ul className="space-y-3 text-base md:text-lg">
               <li><a href="#home" className="text-indigo-200 hover:text-white transition-colors">Home</a></li>
               <li><a href="#investment-approach" className="text-indigo-200 hover:text-white transition-colors">Investment Approach</a></li>
               <li><a href="#insights" className="text-indigo-200 hover:text-white transition-colors">Portfolio</a></li>
@@ -46,8 +58,8 @@ function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="font-medium mb-4">Resources</h3>
-            <ul className="space-y-2 text-sm">
+            <h3 className="font-medium mb-5 text-lg md:text-xl">Resources</h3>
+            <ul className="space-y-3 text-base md:text-lg">
               <li><a href="#insights" className="text-indigo-200 hover:text-white transition-colors">Knowledge Hub</a></li>
               <li><a href="#insights" className="text-indigo-200 hover:text-white transition-colors">Market Insights</a></li>
               <li><a href="#insights" className="text-indigo-200 hover:text-white transition-colors">Reports</a></li>
@@ -57,23 +69,23 @@ function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-medium mb-4">Contact</h3>
-            <ul className="space-y-2 text-sm text-indigo-200">
+            <h3 className="font-medium mb-5 text-lg md:text-xl">Contact</h3>
+            <ul className="space-y-3 text-base md:text-lg text-indigo-200">
               <li className="flex items-center"><span className="mr-2"><EmailIcon /></span> info@indiaavenue.com</li>
               <li className="flex items-center"><span className="mr-2"><PhoneIcon /></span> [Phone number]</li>
               <li className="flex items-center"><span className="mr-2"><LocationPinIcon /></span> [Office address]</li>
             </ul>
-            <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-indigo-200 hover:text-white transition-colors">LinkedIn</a>
-              <a href="#" className="text-indigo-200 hover:text-white transition-colors">Twitter</a>
+            <div className="flex space-x-5 mt-5">
+              <a href="#" className="text-indigo-200 hover:text-white transition-colors text-base md:text-lg">LinkedIn</a>
+              <a href="#" className="text-indigo-200 hover:text-white transition-colors text-base md:text-lg">Twitter</a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-indigo-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-indigo-300">
+        <div className="border-t border-indigo-800 pt-10">
+          <div className="flex flex-col md:flex-row justify-between items-center text-base md:text-lg text-indigo-300">
             <p>© 2024 India Avenue Investment Management. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
+            <div className="flex space-x-8 mt-4 md:mt-0">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
               <a href="#" className="hover:text-white transition-colors">Disclaimer</a>

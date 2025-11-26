@@ -109,17 +109,21 @@ function OurEdge() {
   ]
 
   return (
-    <section ref={sectionRef} id="our-edge" className="py-24 bg-gradient-to-b from-white via-slate-50/30 to-white relative overflow-hidden">
+    <section ref={sectionRef} id="our-edge" className="py-24 bg-gradient-to-br from-indigo-50/40 via-white to-saffron-50/30 relative overflow-hidden">
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.015]">
+      <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute top-0 left-0 w-full h-full" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #1e293b 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle at 2px 2px, #4f46e5 1px, transparent 1px)`,
           backgroundSize: '48px 48px'
         }}></div>
       </div>
 
+      {/* Decorative gradient orbs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-saffron-200/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
       {/* Decorative top accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-transparent via-indigo-200 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-12 bg-gradient-to-b from-transparent via-indigo-400 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -151,40 +155,36 @@ function OurEdge() {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div className={`relative h-full bg-white rounded-md border border-slate-200/70 p-10
-                transition-all duration-500 ease-out
-                ${hoveredIndex === index 
-                  ? 'shadow-xl shadow-slate-200/60 -translate-y-2 border-indigo-200/80' 
-                  : 'shadow-sm'
-                }`}
+              <div 
+                className={`relative h-full p-10
+                  transition-all duration-500 ease-out
+                `}
+                style={{
+                  borderRadius: '7px',
+                  backgroundColor: '#FFFFFF',
+                  border: index % 2 === 0 ? '3px solid #6366f1' : '3px solid #f97316',
+                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.05)',
+                  transform: hoveredIndex === index ? 'scale(1.015)' : 'scale(1)'
+                }}
               >
-                {/* Top accent line - subtle */}
-                <div className={`absolute top-0 left-0 right-0 h-px transition-all duration-500
-                  ${hoveredIndex === index 
-                    ? 'bg-gradient-to-r from-transparent via-saffron-400 to-transparent opacity-100' 
-                    : 'bg-gradient-to-r from-transparent via-slate-200 to-transparent opacity-60'
-                  }`}></div>
                 
                 {/* Content Container */}
                 <div className="flex flex-col h-full">
                   {/* Top Row: Label & Icon */}
                   <div className="flex items-start justify-between mb-8">
                     {/* Label */}
-                    <div className={`text-[10px] font-semibold uppercase tracking-[0.15em] transition-colors duration-500
-                      ${hoveredIndex === index ? 'text-indigo-600' : 'text-slate-400'}`}>
+                    <div className="text-[10px] font-semibold uppercase tracking-[0.15em] text-indigo-600 transition-colors duration-500">
                       {point.label}
                     </div>
                     
                     {/* Icon */}
-                    <div className={`transition-all duration-500
-                      ${hoveredIndex === index ? 'text-indigo-600 scale-110' : 'text-slate-300'}`}>
+                    <div className="text-indigo-600 drop-shadow-sm transition-all duration-500">
                       {point.icon}
                     </div>
                   </div>
 
                   {/* Value - Primary Info */}
-                  <div className={`text-3xl font-light tracking-tight mb-3 transition-colors duration-500
-                    ${hoveredIndex === index ? 'text-indigo-900' : 'text-slate-800'}`}>
+                  <div className="text-3xl font-light tracking-tight mb-3 text-indigo-900 transition-all duration-500">
                     {point.value}
                   </div>
 
@@ -197,11 +197,17 @@ function OurEdge() {
 
                   {/* Bottom accent line */}
                   <div className="mt-auto pt-6">
-                    <div className={`h-px rounded-full transition-all duration-500
+                    <div className={`h-px transition-all duration-500
                       ${hoveredIndex === index 
-                        ? 'bg-gradient-to-r from-saffron-400 to-saffron-500 w-16' 
-                        : 'bg-slate-200 w-10'
-                      }`}></div>
+                        ? 'w-16' 
+                        : 'w-10'
+                      }`}
+                      style={{
+                        backgroundColor: hoveredIndex === index 
+                          ? (index % 2 === 0 ? '#6366f1' : '#f97316')
+                          : '#cbd5e1'
+                      }}
+                    ></div>
                   </div>
                 </div>
               </div>

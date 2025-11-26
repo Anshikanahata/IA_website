@@ -114,7 +114,7 @@ function FivePillarCarousel() {
       {/* Subtle accent line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-transparent via-indigo-300 to-transparent"></div>
 
-      <div className="w-full px-4 sm:px-6 lg:px-16 xl:px-24 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -147,8 +147,9 @@ function FivePillarCarousel() {
                 
                 {/* Front Side */}
                 <div className="absolute w-full h-full backface-hidden">
-                  <div className="h-full bg-white rounded-md border border-slate-200/80 p-8 
-                    shadow-sm flex flex-col justify-between">
+                  <div className="h-full rounded-md border-2 border-saffron-300 p-8 
+                    shadow-sm flex flex-col justify-between"
+                    style={{ backgroundColor: '#F6A45C' }}>
                     
                     {/* Top accent line */}
                     <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
@@ -178,7 +179,7 @@ function FivePillarCarousel() {
 
                 {/* Back Side */}
                 <div className="absolute w-full h-full backface-hidden rotate-y-180">
-                  <div className="h-full bg-gradient-to-br from-indigo-900 via-indigo-800 to-slate-900 rounded-md p-8 
+                  <div className="h-full bg-gradient-to-br from-indigo-900 via-indigo-800 to-slate-900 rounded-md border-2 border-saffron-300 p-8 
                     shadow-xl flex flex-col justify-between">
                     
                     {/* Top accent line */}

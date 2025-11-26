@@ -93,53 +93,80 @@ function OurFunds() {
 
         {/* Funds Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {funds.map((fund, index) => (
+          {funds.map((fund, index) => {
+            // Premium solid colors for clean editorial look
+            const solidColors = [
+              '#F6A45C', // Soft orange
+              '#3A44B0', // Muted blue/purple
+              '#6A8E7A'  // Muted green
+            ]
+            const fundCategories = [
+              'EQUITY FUND',
+              'GROWTH FUND',
+              'ACTIVE ETF'
+            ]
+
+            return (
             <Link
               key={index}
               to={fund.link}
-              className={`group relative bg-white border border-slate-200 rounded-md p-8 transition-all duration-300 ease-out flex flex-col ${
+              className={`group relative rounded p-8 lg:p-10 transition-all duration-300 ease-out flex flex-col ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-              } hover:-translate-y-1 hover:shadow-lg hover:border-indigo-200`}
+              } hover:scale-[1.02]`}
               style={{ 
                 transitionDelay: `${index * 100}ms`,
-                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
-                minHeight: '320px'
+                backgroundColor: solidColors[index],
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+                minHeight: '360px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)'
               }}
             >
               {/* Icon Container */}
-              <div className="mb-6 text-indigo-700 group-hover:text-saffron-500 transition-colors duration-300">
+              <div className="mb-6 text-white/90">
                 {fund.icon}
+              </div>
+
+              {/* Category Label */}
+              <div className="mb-3">
+                <span className="text-xs font-semibold text-white/80 tracking-widest uppercase">
+                  {fundCategories[index]}
+                </span>
+                {/* Editorial separator line */}
+                <div className="w-12 h-px bg-white/30 mt-3"></div>
               </div>
 
               {/* Content */}
               <div className="flex flex-col flex-grow">
-                <h3 className="text-xl font-light text-slate-900 mb-4 tracking-tight leading-tight group-hover:text-indigo-900 transition-colors duration-300">
+                <h3 className="text-2xl md:text-[26px] font-normal text-white mb-5 tracking-tight leading-[1.2]">
                   {fund.name}
                 </h3>
                 
-                <p className="text-slate-600 text-sm leading-relaxed mb-8 flex-grow font-light">
+                <p className="text-white/85 text-[15px] leading-relaxed mb-8 flex-grow font-light">
                   {fund.description}
                 </p>
 
                 {/* Learn More CTA */}
-                <div className="flex items-center text-indigo-700 group-hover:text-saffron-500 font-medium text-sm transition-colors duration-300 mt-auto">
+                <div className="flex items-center text-white font-medium text-sm transition-all duration-300 mt-auto group-hover:gap-3 gap-2">
                   <span className="tracking-wide">Learn More</span>
                   <svg 
-                    className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+                    className="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1" 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
-                    strokeWidth={2}
+                    strokeWidth={2.5}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </div>
               </div>
-
-              {/* Subtle accent line on hover */}
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-saffron-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-b-md"></div>
             </Link>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

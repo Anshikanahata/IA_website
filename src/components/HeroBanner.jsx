@@ -58,7 +58,8 @@ function HeroBanner() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-light mb-6 leading-tight text-shadow-hero tracking-tight">
-            Invest in the Future of India
+            <span className="text-saffron-500 font-serif font-semibold">I</span>nvest in the future of<br />
+            <span className="text-saffron-500 font-serif font-semibold">I</span>ndia
           </h1>
           <p className="text-xl md:text-2xl font-light text-indigo-100 mb-10 leading-relaxed max-w-2xl">
             India Avenue is a boutique investment management firm providing investment solutions that allow our clients to benefit from India's remarkable growth story
