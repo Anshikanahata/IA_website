@@ -1,0 +1,59 @@
+# Project Dependencies
+# This file lists all dependencies required to run the India Avenue website
+# Install all dependencies by running: npm install
+
+# ============================================
+# PRODUCTION DEPENDENCIES
+# ============================================
+# These are required for the application to run
+
+react@^18.2.0
+react-dom@^18.2.0
+react-router-dom@^7.9.6
+
+# ============================================
+# DEVELOPMENT DEPENDENCIES
+# ============================================
+# These are required for development and building
+
+@types/react@^18.2.43
+@types/react-dom@^18.2.17
+@vitejs/plugin-react@^4.2.1
+autoprefixer@^10.4.16
+postcss@^8.4.32
+tailwindcss@^3.3.6
+vite@^5.0.8
+
+# ============================================
+# INSTALLATION INSTRUCTIONS
+# ============================================
+# 
+# To install all dependencies, run:
+#   npm install
+#
+# This will automatically install all packages listed above
+# based on the versions specified in package.json
+#
+# Note: For Node.js projects, dependencies are managed through
+# package.json and npm. This requirements.txt file serves as
+# a human-readable reference of all dependencies.
+#
+# ============================================
+# DEPENDENCY DESCRIPTIONS
+# ============================================
+#
+# Production Dependencies:
+# - react: Core React library for building user interfaces
+# - react-dom: React package for DOM rendering
+# - react-router-dom: Routing library for React applications
+#
+# Development Dependencies:
+# - @types/react: TypeScript type definitions for React
+# - @types/react-dom: TypeScript type definitions for React DOM
+# - @vitejs/plugin-react: Vite plugin for React support
+# - autoprefixer: PostCSS plugin to parse CSS and add vendor prefixes
+# - postcss: Tool for transforming CSS with JavaScript plugins
+# - tailwindcss: Utility-first CSS framework
+# - vite: Next generation frontend build tool and dev server
+#
+
